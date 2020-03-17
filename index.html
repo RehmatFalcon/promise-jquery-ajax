@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>repl.it</title>
+	<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+	 crossorigin="anonymous">
+	</script>
+	<script src="script.js">
+	</script>
+	<script>
+		$(() => {
+        const get = (url) => new Promise(
+          (onSuccess, onError) => {
+            $.ajax({
+              url : url,
+              success: function(data) {
+                onSuccess(data);
+              },
+              error: function(data) {
+                onError(data);
+              }
+            });
+          }
+        );
+        get("https://restcountries.eu/rest/v2/all")
+          .then(res => {
+            console.log(res);
+          })
+          .catch(err => {
+            console.error(err);
+          });
+    });
+	</script>
+</body>
+
+</html>
